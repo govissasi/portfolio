@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sasi Kumar S | Senior Angular & Frontend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --bg-primary: #0a0f1d;
+      --bg-secondary: #111827;
+      --bg-card: rgba(17, 24, 39, 0.7);
+      --accent: #dd0031;
+      --accent-glow: rgba(221, 0, 49, 0.35);
+      --accent-cyan: #38bdf8;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --radius: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .glow-bg {
+      position: fixed;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, rgba(10, 15, 29, 0) 70%);
+      z-index: -1;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 15, 29, 0.85);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 8%;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #fff;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(221, 0, 49, 0.12);
+      border: 1px solid rgba(221, 0, 49, 0.3);
+      color: #ff6b81;
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+
+    .badge i {
+      font-size: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #fff 30%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 14px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      background: #c3002b;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: #fff;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(221, 0, 49, 0.4);
+    }
+
+    .skill-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    .timeline {
+      position: relative;
+      border-left: 2px solid rgba(255, 255, 255, 0.1);
+      margin-left: 1rem;
+      padding-left: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -2.65rem;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      background: var(--accent);
+      border: 3px solid var(--bg-primary);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .experience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1.8rem;
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .exp-header h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .exp-company {
+      color: var(--accent-cyan);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .exp-period {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .exp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .exp-list li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .exp-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .contact-box {
+      text-align: center;
+      background: linear-gradient(180deg, rgba(17, 24, 39, 0.8) 0%, rgba(10, 15, 29, 0.9) 100%);
+      border: 1px solid var(--border-color);
+      padding: 3.5rem 2rem;
+      border-radius: var(--radius);
+    }
+
+    .contact-box h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .contact-box p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      nav { padding: 1rem 5%; }
+      .nav-links { display: none; }
+      .timeline { margin-left: 0.5rem; padding-left: 1.5rem; }
+      .timeline-dot { left: -2.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-bg"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Sasi<span> Kumar</span> S</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+      <div class="badge"><i class="fa-solid fa-code"></i> Angular Frontend Developer • 6.4+ Yrs Exp</div>
+      <h1>Hi, I'm <span>Sasi Kumar S</span></h1>
+      <p>Senior Engineer specializing in scalable enterprise applications using <strong>Angular (v19+), RxJS, NgRx, TypeScript, and Java REST APIs</strong>. Focused on modern UI/UX architecture and AI-assisted workflows.</p>
+      <div class="btn-group">
+        <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Let's Connect</a>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="padding-top: 4rem;">
+      <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3><i class="fa-brands fa-angular"></i> Frontend & Frameworks</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Angular (v19+)</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">JavaScript (ES6+)</span>
+            <span class="skill-tag">RxJS</span>
+            <span class="skill-tag">NgRx</span>
+            <span class="skill-tag">Angular Material</span>
+            <span class="skill-tag">HTML5 & CSS3</span>
+            <span class="skill-tag">Bootstrap</span>
+            <span class="skill-tag">jQuery</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3><i class="fa-solid fa-server"></i> Backend & Database</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Spring Boot</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Firebase</span>
+            <span class="skill-tag">Sybase</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3><i class="fa-solid fa-robot"></i> AI Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">GitHub Copilot</span>
+            <span class="skill-tag">Builder.io</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3><i class="fa-solid fa-toolbox"></i> IDE & Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">IntelliJ</span>
+            <span class="skill-tag">Visual Studio</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitLab</span>
+            <span class="skill-tag">Bitbucket</span>
+            <span class="skill-tag">Gitea</span>
+            <span class="skill-tag">SourceTree</span>
+            <span class="skill-tag">Jira</span>
+            <span class="skill-tag">Asana</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" style="padding-top: 5rem;">
+      <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
+      <div class="timeline">
+
+        <!-- Altimetrik -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="experience-card">
+            <div class="exp-header">
+              <div>
+                <h3>Senior Engineer - Product and Platform Engineering</h3>
+                <div class="exp-company">Altimetrik</div>
+              </div>
+              <div class="exp-period">Apr 2026 – Present | Chennai, Tamil Nadu</div>
+            </div>
+            <ul class="exp-list">
+              <li>Developed and modernized web applications using modern frontend technologies to improve performance, usability, and user experience.</li>
+              <li>Improved development efficiency and code quality using AI-powered development tools including GitHub Copilot.</li>
+              <li>Collaborated with cross-functional teams to develop and integrate shared libraries and custom NPM packages.</li>
+              <li>Collaborated with clients and project managers to gather feedback, plan sprints and upcoming deliverables, track development progress, and ensure timely feature delivery in an Agile environment.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ACL Digital -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="experience-card">
+            <div class="exp-header">
+              <div>
+                <h3>Senior Software Engineer</h3>
+                <div class="exp-company">ACL Digital (Alten Calsoft Labs India Private Limited)</div>
+              </div>
+              <div class="exp-period">Dec 2024 – Mar 2026 | Chennai, Tamil Nadu</div>
+            </div>
+            <ul class="exp-list">
+              <li>Built the Vivano application from scratch using Angular with a focus on scalable, reusable, and user-friendly UI components.</li>
+              <li>Developed reusable Angular components for tables, printing, and data export, reducing code duplication and improving consistency.</li>
+              <li>Improved application performance using Angular lazy loading, RxJS, and Angular Signals.</li>
+              <li>Implemented REST API integration with encryption and decryption for secure data transmission.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- CubeSimple -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="experience-card">
+            <div class="exp-header">
+              <div>
+                <h3>UI UX Developer</h3>
+                <div class="exp-company">CubeSimple Private Limited</div>
+              </div>
+              <div class="exp-period">Apr 2024 – Jul 2024 | Chennai, Tamil Nadu</div>
+            </div>
+            <ul class="exp-list">
+              <li>Gathered requirements and coordinated with team members for an internal ERP web application.</li>
+              <li>Implemented the Attendance module with responsive and user-friendly UI components.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Soft Suave -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="experience-card">
+            <div class="exp-header">
+              <div>
+                <h3>Executive Software Engineer</h3>
+                <div class="exp-company">Soft Suave Technologies Pvt Ltd</div>
+              </div>
+              <div class="exp-period">Dec 2020 – Mar 2024 | Chennai, Tamil Nadu</div>
+            </div>
+            <ul class="exp-list">
+              <li>Developed and enhanced the Nimbus SCF loan origination application by implementing new features based on client requirements.</li>
+              <li>Implemented custom Angular directives for input validation and custom pipes for user-friendly data presentation.</li>
+              <li>Integrated third-party services including Perfios, CKYC, Credit Bureau, and Karza through REST APIs.</li>
+              <li>Implemented file upload and download functionality for financial data across multiple microservices.</li>
+              <li>Handled database migrations using SQL scripts, queries, functions, and APIs.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Eco Tech -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="experience-card">
+            <div class="exp-header">
+              <div>
+                <h3>Software Programmer Trainee</h3>
+                <div class="exp-company">Eco Tech Software Pvt Ltd</div>
+              </div>
+              <div class="exp-period">Jun 2018 – Sep 2019 | Chennai, Tamil Nadu</div>
+            </div>
+            <ul class="exp-list">
+              <li>Understanding the business logic and requirements.</li>
+              <li>Fixing Errors and Implementing the features in costing module.</li>
+              <li>Improve the application performances.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" style="padding-top: 5rem;">
+      <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+      <div class="edu-card">
+        <div>
+          <h3 style="color: #fff; font-size: 1.15rem; font-weight: 700;">Bachelor of Engineering in Computer Science and Engineering</h3>
+          <p style="color: var(--accent-cyan); font-weight: 500;">University College of Engineering Kanchipuram</p>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Aug 2014 – May 2018 | Kancheepuram, Tamil Nadu | CGPA: 6.26/10.0</p>
+        </div>
+        <div class="badge" style="margin: 0;"><i class="fa-solid fa-award"></i> B.E. Graduate</div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="padding-top: 5rem; padding-bottom: 2rem;">
+      <div class="contact-box">
+        <h2>Let's Connect</h2>
+        <p>Looking for a Senior Frontend / Angular Developer for scalable enterprise apps? Feel free to reach out!</p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <a href="tel:+917010366738" class="btn btn-outline">
+            <i class="fa-solid fa-phone"></i> +91 7010366738
+          </a>
+          <a href="mailto:govindarajssasikumar@gmail.com" class="btn btn-primary">
+            <i class="fa-solid fa-envelope"></i> govindarajssasikumar@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/nos-sasi-kumar" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="border-color: #0077b5; color: #38bdf8;">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Sasi Kumar S. Designed & built for modern web performance.</p>
+  </footer>
+
+</body>
+</html>
